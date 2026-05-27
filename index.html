@@ -3,364 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amelia's Graduation Party</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Amelia's Graduation Celebration</title>
+    <!-- Google Fonts for High-End Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0d0d11 0%, #1a1a24 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --gold-primary: #d4af37;
+            --gold-secondary: #aa7c11;
+            --gold-gradient: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1aa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FAFAF9; /* Soft stone white */
-            color: #292524;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient geometric background glow for graphic depth */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0) 70%);
+            top: 10%;
+            left: 15%;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(170, 124, 17, 0.05) 0%, rgba(0,0,0,0) 70%);
+            bottom: 10%;
+            right: 10%;
+            z-index: 0;
+        }
+
+        /* Main Glassmorphic Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        /* Graphic Design Accents */
+        .corner-accent {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+        }
+        .top-left { top: 20px; left: 20px; border-top-color: var(--gold-secondary); border-left-color: var(--gold-secondary); }
+        .top-right { top: 20px; right: 20px; border-top-color: var(--gold-secondary); border-right-color: var(--gold-secondary); }
+        .bottom-left { bottom: 20px; left: 20px; border-bottom-color: var(--gold-secondary); border-left-color: var(--gold-secondary); }
+        .bottom-right { bottom: 20px; right: 20px; border-bottom-color: var(--gold-secondary); border-right-color: var(--gold-secondary); }
+
+        /* Typography */
+        .header-prefix {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--gold-primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+        }
+
+        /* Divider Graphic */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        .divider .line {
+            height: 1px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, var(--gold-secondary), transparent);
+        }
+        .divider .diamond {
+            width: 6px;
+            height: 6px;
+            background: var(--gold-primary);
+            transform: rotate(45deg);
+            margin: 0 10px;
+        }
+
+        /* Event Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        @media (min-width: 480px) {
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .detail-item {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 16px;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
         }
         
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
+        .detail-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .text-gold {
-            color: #B48E4B;
-        }
-        .bg-gold {
-            background-color: #B48E4B;
-        }
-        .bg-gold-hover:hover {
-            background-color: #9C7A3E;
-        }
-        .border-gold {
-            border-color: #B48E4B;
+        .detail-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold-primary);
+            margin-bottom: 4px;
+            font-weight: 600;
         }
 
-        /* Smooth Entry Animations */
-        .fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .detail-value {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* RSVP Form Styling */
+        form {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Radio Toggle for Attendance */
+        .attendance-toggle {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .radio-btn {
+            flex: 1;
+            position: relative;
+        }
+
+        .radio-btn input[type="radio"] {
+            position: absolute;
             opacity: 0;
-            transform: translateY(30px);
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
         }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .radio-label {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-btn input[type="radio"]:checked + .radio-label {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        /* Premium Submit Button */
+        button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            margin-top: 15px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 10px;
+            color: #0d0d11;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(170, 124, 17, 0.2);
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            filter: brightness(1.05);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden selection:bg-[#B48E4B] selection:text-white">
+<body>
 
-    <!-- Main Layout Container -->
-    <main class="min-h-screen flex flex-col lg:flex-row w-full">
-        
-        <!-- Left Column: Details -->
-        <div class="w-full lg:w-1/2 flex flex-col justify-center px-8 py-16 lg:px-24 xl:px-32 relative z-10 bg-white shadow-[10px_0_30px_rgba(0,0,0,0.03)]">
-            <div class="max-w-xl mx-auto lg:mx-0">
-                <div class="fade-in-up flex items-center gap-4 mb-6">
-                    <div class="h-[1px] w-12 bg-gold"></div>
-                    <span class="uppercase tracking-widest text-sm font-medium text-stone-500">Class of 2026</span>
-                </div>
-                
-                <h1 class="fade-in-up delay-100 text-5xl lg:text-7xl font-semibold leading-tight mb-6">
-                    Amelia <br>
-                    <span class="text-gold italic font-normal">Cariola</span>
-                </h1>
-                
-                <p class="fade-in-up delay-200 text-stone-600 text-lg lg:text-xl leading-relaxed mb-10 border-l-4 border-stone-200 pl-6">
-                    Please join us in celebrating Amelia's graduation from <br class="hidden lg:block">
-                    <span class="font-semibold text-stone-800">Stone Bridge High School</span>.
-                </p>
+    <div class="container">
+        <!-- Graphic Corner Borders -->
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent top-right"></div>
+        <div class="corner-accent bottom-left"></div>
+        <div class="corner-accent bottom-right"></div>
 
-                <div class="fade-in-up delay-300 space-y-8 mb-12">
-                    <!-- Date & Time -->
-                    <div class="flex items-start gap-4">
-                        <div class="bg-stone-100 p-3 rounded-full text-gold mt-1">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-2xl mb-1">Sunday, June 7th</h3>
-                            <p class="text-stone-600 text-lg">1:00 PM – 4:00 PM</p>
-                        </div>
-                    </div>
+        <!-- Header -->
+        <div class="header-prefix">In Honor of the Graduate</div>
+        <h1>Amelia</h1>
+        <div class="subtitle">Graduation Celebration</div>
 
-                    <!-- Location -->
-                    <div class="flex items-start gap-4">
-                        <div class="bg-stone-100 p-3 rounded-full text-gold mt-1">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-2xl mb-1">Ashburn Woods</h3>
-                            <p class="text-stone-600 text-lg mb-2">Recreation Center, 2nd Floor</p>
-                            <a href="https://maps.app.goo.gl/9Cx9yAc7Aj2MiYtQA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-gold hover:text-stone-900 transition-colors uppercase tracking-wider">
-                                View on Google Maps
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="divider">
+            <div class="line"></div>
+            <div class="diamond"></div>
+            <div class="line"></div>
+        </div>
 
-                <div class="fade-in-up delay-400">
-                    <button onclick="openRSVP()" class="bg-gold bg-gold-hover text-white px-10 py-4 rounded-full font-medium text-lg tracking-wide shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-[#B48E4B]/30 w-full sm:w-auto text-center">
-                        RSVP to the Party
-                    </button>
-                </div>
+        <!-- Event Details Block -->
+        <div class="details-grid">
+            <div class="detail-item">
+                <div class="detail-label">Date & Time</div>
+                <div class="detail-value">Saturday, June 20th, 2026<br>4:00 PM – 8:00 PM</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Location</div>
+                <div class="detail-value">The HOA Community Facility<br>[Insert Street Address Here]</div>
             </div>
         </div>
 
-        <!-- Right Column: Editorial Photo Gallery Layout -->
-        <div class="w-full lg:w-1/2 bg-[#F5F4F0] p-8 py-16 lg:p-16 flex flex-col justify-center items-center min-h-[60vh]">
-            
-            <div class="w-full max-w-lg lg:max-w-xl flex flex-col gap-8 lg:gap-12">
-                
-                <!-- Primary Photo (Link 01) -->
-                <div class="fade-in-up delay-200 relative w-full aspect-[4/5] rounded-2xl shadow-2xl overflow-hidden group cursor-pointer border-8 border-white bg-stone-200" 
-                     onclick="openLightbox('https://drive.google.com/uc?export=view&id=1FdG9Eu7lLLzHd5HU2g_Ba5OVitpnow_s')">
-                    
-                    <img src="https://drive.google.com/uc?export=view&id=1FdG9Eu7lLLzHd5HU2g_Ba5OVitpnow_s" alt="Amelia Primary Photo" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    
-                    <!-- Hover overlay -->
-                    <div class="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                        <div class="bg-white/95 text-stone-900 px-6 py-3 rounded-full font-medium tracking-wide flex items-center gap-2 shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
-                            Expand Image
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Secondary Photo (Link 02) -->
-                <div class="fade-in-up delay-400 relative w-[85%] sm:w-[75%] aspect-[4/3] rounded-2xl shadow-xl overflow-hidden group cursor-pointer border-8 border-white bg-stone-200 self-end z-10" 
-                     onclick="openLightbox('https://drive.google.com/uc?export=view&id=1voyRCORg471SqBuRdF4LY77EcCTAWVaL')">
-                    
-                    <img src="https://drive.google.com/uc?export=view&id=1voyRCORg471SqBuRdF4LY77EcCTAWVaL" alt="Amelia Secondary Photo" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    
-                    <!-- Hover overlay -->
-                    <div class="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                        <div class="bg-white/95 text-stone-900 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide flex items-center gap-2 shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
-                            Expand Image
-                        </div>
-                    </div>
-                </div>
-
+        <!-- RSVP Form Section -->
+        <form id="rsvpForm">
+            <div class="form-group">
+                <label for="fullName">Your Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g., John Doe" required>
             </div>
-        </div>
-    </main>
 
-    <!-- RSVP Modal Form -->
-    <div id="rsvpModal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-stone-900/60 backdrop-blur-sm" onclick="closeRSVP()"></div>
-        
-        <!-- Modal Content -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="rsvpContent">
-                
-                <!-- Close Button -->
-                <button onclick="closeRSVP()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-full p-2 transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-
-                <div class="p-8 sm:p-10">
-                    <h2 class="font-serif text-3xl mb-2 text-stone-900">RSVP</h2>
-                    <p class="text-stone-500 mb-8 text-sm">We can't wait to celebrate with you!</p>
-
-                    <form id="rsvpForm" class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-medium text-stone-700 mb-1">Full Name</label>
-                            <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all bg-stone-50">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-stone-700 mb-1">Email Address</label>
-                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all bg-stone-50">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-stone-700 mb-1">Attending?</label>
-                                <select name="attending" required class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all bg-stone-50 appearance-none">
-                                    <option value="Yes">Yes, gladly!</option>
-                                    <option value="No">Regretfully, no</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-stone-700 mb-1">Total Guests</label>
-                                <select name="guests" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all bg-stone-50 appearance-none">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5+">5+</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-stone-700 mb-1">Message for Amelia (Optional)</label>
-                            <textarea name="message" rows="3" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all bg-stone-50 resize-none"></textarea>
-                        </div>
-
-                        <button type="submit" id="submitBtn" class="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-medium tracking-wide transition-colors mt-4 flex justify-center items-center gap-2">
-                            <span>Send RSVP</span>
-                        </button>
-                    </form>
-
-                    <!-- Success State -->
-                    <div id="successMessage" class="hidden text-center py-8">
-                        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <h3 class="font-serif text-2xl text-stone-900 mb-2">Thank You!</h3>
-                        <p class="text-stone-500">Your RSVP has been sent successfully.</p>
-                        <button onclick="closeRSVP()" class="mt-6 text-gold hover:text-stone-900 font-medium transition-colors">Close window</button>
+            <div class="form-group">
+                <label>Will you be attending?</label>
+                <div class="attendance-toggle">
+                    <div class="radio-btn">
+                        <input type="radio" id="attendYes" name="attendance" value="yes" checked>
+                        <label for="attendYes" class="radio-label">Accepts with Pleasure</label>
+                    </div>
+                    <div class="radio-btn">
+                        <input type="radio" id="attendNo" name="attendance" value="no">
+                        <label for="attendNo" class="radio-label">Declines with Regret</label>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" name="guests">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5+">5+ People</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit RSVP</button>
+        </form>
     </div>
 
-    <!-- Photo Lightbox Modal -->
-    <div id="lightboxModal" class="fixed inset-0 z-[60] hidden opacity-0 transition-opacity duration-300">
-        <!-- Dark backdrop -->
-        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeLightbox()"></div>
-        
-        <!-- Close Button -->
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 z-10 text-white/70 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-3 transition-all backdrop-blur-sm">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-
-        <!-- Loading indicator -->
-        <div class="absolute inset-0 flex items-center justify-center -z-10 text-white/50">
-            <svg class="animate-spin h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-        </div>
-
-        <!-- Frame Container -->
-        <div class="absolute inset-4 sm:inset-10 flex items-center justify-center pointer-events-none">
-            <div class="w-full h-full max-w-6xl rounded-xl overflow-hidden pointer-events-auto transition-transform duration-300 scale-95 flex items-center justify-center" id="lightboxContent">
-                <img id="lightboxFrame" src="" alt="Expanded View" class="max-w-full max-h-full object-contain drop-shadow-2xl">
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // Form submission placeholder to connect seamlessly with backend scripts later
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // --- RSVP MODAL LOGIC ---
-            const rsvpModal = document.getElementById('rsvpModal');
-            const rsvpContent = document.getElementById('rsvpContent');
-            const form = document.getElementById('rsvpForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-
-            window.openRSVP = function() {
-                rsvpModal.classList.remove('hidden');
-                // Small delay to allow display:block to apply before animating opacity
-                setTimeout(() => {
-                    rsvpModal.classList.remove('opacity-0');
-                    rsvpContent.classList.remove('scale-95');
-                    rsvpContent.classList.add('scale-100');
-                }, 10);
-            }
-
-            window.closeRSVP = function() {
-                rsvpModal.classList.add('opacity-0');
-                rsvpContent.classList.remove('scale-100');
-                rsvpContent.classList.add('scale-95');
-                setTimeout(() => {
-                    rsvpModal.classList.add('hidden');
-                    // Reset form state on close
-                    if (!successMessage.classList.contains('hidden')) {
-                        setTimeout(() => {
-                            form.reset();
-                            form.classList.remove('hidden');
-                            successMessage.classList.add('hidden');
-                        }, 300);
-                    }
-                }, 300); // Matches transition duration
-            }
-
-            // Google Apps Script Web App URL
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoVIKMioi5-bVuDpGOIn1_C9TFdTZRVrMICLC8RDIWQy91OkkHKDFec4-wDL4pkPi4/exec';
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Loading state
-                const originalBtnText = submitBtn.innerHTML;
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `
-                    <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                `;
-
-                const formData = new FormData(form);
-                
-                // Fetch request to Google Apps Script
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (response.ok) {
-                        form.classList.add('hidden');
-                        successMessage.classList.remove('hidden');
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert("There was an issue sending your RSVP. Please try again.");
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                });
-            });
-
-            // --- LIGHTBOX GALLERY LOGIC ---
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxContent = document.getElementById('lightboxContent');
-            const lightboxFrame = document.getElementById('lightboxFrame');
-
-            window.openLightbox = function(url) {
-                lightboxFrame.src = url;
-                lightboxModal.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    lightboxModal.classList.remove('opacity-0');
-                    lightboxContent.classList.remove('scale-95');
-                    lightboxContent.classList.add('scale-100');
-                }, 10);
-            }
-
-            window.closeLightbox = function() {
-                lightboxModal.classList.add('opacity-0');
-                lightboxContent.classList.remove('scale-100');
-                lightboxContent.classList.add('scale-95');
-                
-                setTimeout(() => {
-                    lightboxModal.classList.add('hidden');
-                    lightboxFrame.src = ''; // Clear iframe to stop video/audio if any and reset loading
-                }, 300);
-            }
-
-            // Close modals on Escape key press
-            document.addEventListener('keydown', function(event) {
-                if (event.key === "Escape") {
-                    if (!rsvpModal.classList.contains('hidden')) closeRSVP();
-                    if (!lightboxModal.classList.contains('hidden')) closeLightbox();
-                }
-            });
+            const formData = {
+                name: document.getElementById('fullName').value,
+                attending: document.querySelector('input[name="attendance"]:checked').value,
+                guests: document.getElementById('guests').value
+            };
+            
+            console.log('RSVP Data Captured:', formData);
+            alert('Thank you! Your RSVP has been captured.');
+            // This is where we will hook up your Google Sheets or form notification triggers next.
         });
     </script>
 </body>
